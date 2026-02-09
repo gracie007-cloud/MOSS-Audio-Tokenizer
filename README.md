@@ -74,6 +74,17 @@ pip install -r requirements.txt
 |:-----:|:---------------:|
 | **🚀 Moss Audio Tokenizer** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer) |
 
+### 🎵 Audio Generation Models Based On MOSS Audio Tokenizer
+| Model | 🤗 Hugging Face |
+|:-----:|:---------------:|
+| **🚀 Moss-TTS** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS) |
+| **🚀 Moss-TTSD** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0) |
+| **🚀 MOSS-TTS-Local-Transformer** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Local-Transformer) |
+| **🚀 MOSS-TTS-Realtime** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Realtime) |
+| **🚀 MOSS-Voice-Generator** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-Voice-Generator) |
+| **🚀 MOSS-SoundEffect** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-SoundEffect) |
+
+
 ## Usage
 
 ### Reconstruction
