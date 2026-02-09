@@ -74,7 +74,7 @@ pip install -r requirements.txt
 |:-----:|:---------------:|
 | **🚀 Moss Audio Tokenizer** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer) |
 
-### 🎵 Audio Generation Models Based On MOSS Audio Tokenizer
+### 🎵 Audio Generation Models Based On Moss Audio Tokenizer
 | Model | 🤗 Hugging Face |
 |:-----:|:---------------:|
 | **🚀 Moss-TTS** | [![HF](https://img.shields.io/badge/🤗%20HuggingFace-MOSSAudioTokenizer-yellow)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS) |
