@@ -190,7 +190,7 @@ We control the bps of the same model by adjusting the number of RVQ codebooks us
 
 <br>
 <p align="center">
-    <img src="images/metrics_on_librispeech_test_clean.png" width="95%"> <br>
+    <img src="images/metrics_on_librispeech_test_clean.png" width="100%"> <br>
 </p>
 <br>
 
