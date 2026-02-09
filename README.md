@@ -7,6 +7,7 @@
 <img src="https://img.shields.io/badge/MossAudio-Tokenizer-ee4c2c?style=flat&logo=soundcharts&logoColor=white" alt="MossAudioTokenizer"/>
 <img src="https://img.shields.io/badge/Semantic--aware-Logic-3776ab?style=flat&logo=probot&logoColor=white" alt="Semantic-aware"/>
 <img src="https://img.shields.io/badge/Transformer-Architecture-555555?style=flat&logo=micro-dot-blog&logoColor=white" alt="Transformer"/>
+<br>
 <img src="https://img.shields.io/badge/Modal-Speech-e1b12c?style=flat&logo=google-assistant&logoColor=white" alt="Speech"/>
 <img src="https://img.shields.io/badge/Modal-Audio-4b8bbe?style=flat&logo=audiomack&logoColor=white" alt="Audio"/>
 <img src="https://img.shields.io/badge/Modal-Music-f39c12?style=flat&logo=apple-music&logoColor=white" alt="Music"/>
