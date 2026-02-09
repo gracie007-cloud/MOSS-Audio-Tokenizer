@@ -188,16 +188,12 @@ The table below compares the reconstruction quality of open-source audio tokeniz
 The plots below compare our MOSS Audio Tokenizer model with other open-source speech tokenizers on the LibriSpeech dataset, evaluated with SIM, STOI, PESQ-NB, and PESQ-WB (higher is better).
 We control the bps of the same model by adjusting the number of RVQ codebooks used during inference.
 
-<table>
-  <tr>
-    <td align="center"><b>SIM</b><br><img src="images/sim.png" width="100%"></td>
-    <td align="center"><b>STOI</b><br><img src="images/stoi.png" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center"><b>PESQ-NB</b><br><img src="images/pesq-nb.png" width="100%"></td>
-    <td align="center"><b>PESQ-WB</b><br><img src="images/pesq-wb.png" width="100%"></td>
-  </tr>
-</table>
+<br>
+<p align="center">
+    <img src="images/metrics_on_librispeech_test_clean.png" width="95%"> <br>
+</p>
+<br>
+
 
 
 ## Citation
