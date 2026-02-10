@@ -2,9 +2,10 @@
 
 <br>
 
-<p align="center" style="display:flex; justify-content:center; align-items:center; gap:24px;">
-  <img src="./images/OpenMOSS_Logo.png" height="70" style="display:block;" />
-  <img src="./images/mosi-logo.png" height="50" style="display:block; transform: translateY(-6px);" />
+<p align="center">
+  <img src="./images/OpenMOSS_Logo.png" height="70" align="middle" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./images/mosi-logo.png" height="50" align="middle" />
 </p>
 
 <div align="center">
