@@ -49,19 +49,17 @@ This repository is the official implementation of Moss Audio Tokenizer.
 - [Introduction](#introduction)
 - [Release](#release)
 - [Model List](#model-list)
-  - [🎵 Moss Audio Tokenizer](#-moss-audio-tokenizer)
-  - [🎵 Audio Generation Models Based On Moss Audio Tokenizer](#-audio-generation-models-based-on-moss-audio-tokenizer)
+  - [Moss Audio Tokenizer](#-moss-audio-tokenizer)
+  - [MOSS-TTS Family](#-audio-generation-models-based-on-moss-audio-tokenizer)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Reconstruction](#reconstruction)
   - [Streaming](#streaming)
 - [Quick Start](#quick-start)
-  - [Quick Test](#quick-test)
-    - [Loading Model](#loading-model)
-    - [Testing Model](#testing-model)
-- [Repository layout](#repository-layout)
+  - [Loading Model](#loading-model)
+  - [Testing Model](#testing-model)
 - [Evaluation Metrics](#evaluation-metrics)
-  - [LibriSpeech Speech Metrics (MOSS Audio Tokenizer vs. Open-source Tokenizers)](#librispeech-speech-metrics-moss-audio-tokenizer-vs-open-source-tokenizers)
+  - [LibriSpeech Speech Metrics](#librispeech-speech-metrics-moss-audio-tokenizer-vs-open-source-tokenizers)
 - [Citation](#citation)
 - [License](#license)
 
@@ -75,12 +73,12 @@ This repository is the official implementation of Moss Audio Tokenizer.
 
 > For MOSS‑TTS Family models and docs, visit the GitHub repo: https://github.com/OpenMOSS/MOSS-TTS
 
-### 🎵 Moss Audio Tokenizer
+### Moss Audio Tokenizer
 | Model | Hugging Face | ModelScope |
 |:-----:|:---------------:|:----------:|
 | **Moss Audio Tokenizer** | [![HF](https://img.shields.io/badge/%20HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer) |
 
-### 🎵 Audio Generation Models Based On Moss Audio Tokenizer
+### MOSS-TTS Family
 | Model | Hugging Face | ModelScope |
 |:-----:|:---------------:|:----------:|
 | **MOSS-TTS** | [![HF](https://img.shields.io/badge/%20HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-TTS) |
@@ -158,28 +156,19 @@ dec = model.decode(enc.audio_codes, return_dict=True, chunk_duration=0.08)
 
 ## Quick Start
 
-### Quick Test
-
-#### Loading Model
+### Loading Model
 ```python
 from transformers import AutoModel
 model = AutoModel.from_pretrained("OpenMOSS-Team/MOSS-Audio-Tokenizer", trust_remote_code=True).eval()
 ```
 
-#### Testing Model
+### Testing Model
 ```bash
 conda activate moss-audio-tokenizer
 cd MOSS-Audio-Tokenizer
 python demo/test_reconstruction.py
 ```
 
-## Repository layout
-
-- `configuration_moss_audio_tokenizer.py`
-- `modeling_moss_audio_tokenizer.py`
-- `__init__.py`
-- `config.json`
-- model weights
 
 ## Evaluation Metrics
 
