@@ -65,7 +65,6 @@ This repository is the official implementation of Moss Audio Tokenizer.
 ## Release
 - [2026/2/10] 🎉 Released **MOSS-TTS Family**. Please refer to our [blog](https://mosi.cn/#models) for details; models and docs can be found in the [MOSS-TTS GitHub repository](https://github.com/OpenMOSS/MOSS-TTS).
 - [2026/2/9] 🔥 We released code and checkpoints of Moss Audio Tokenizer. Checkout the [paper](https://github.com/OpenMOSS/MOSS-Audio-Tokenizer.git), [Hugging Face weights](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer), and [ModelScope weights](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer).
-- [ ] 🚧 Evaluation scripts
 
 ## Model List
 
