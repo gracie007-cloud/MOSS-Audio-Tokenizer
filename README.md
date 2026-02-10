@@ -3,8 +3,8 @@
 <br>
 
 <p align="center">
-  <img src="./images/OpenMOSS_logo.png" height="72" style="display:inline-block; vertical-align:middle; object-fit:contain; margin-right:16px;" />
-  <img src="./images/mosi-logo.png" height="72" style="display:inline-block; vertical-align:middle; object-fit:contain; margin-left:16px;" />
+  <img src="./images/OpenMOSS_logo.png" height="60" style="display:inline-block; vertical-align:middle; object-fit:contain; margin-right:16px;" />
+  <img src="./images/mosi-logo.png" height="60" style="display:inline-block; vertical-align:middle; object-fit:contain; margin-left:16px;" />
 </p>
 
 
