@@ -46,29 +46,30 @@ This repository is the official implementation of Moss Audio Tokenizer.
 <br>
 
 ## Quick Link
-* [Release](#release)
-* [Installation](#installation)
-* [Model List](#model-list)
-* [Usage](#usage)
-* [Quick Start](#quick-start)
-* [Evaluation Metrics](#evaluation-metrics)
-* [Repository layout](#repository-layout)
-* [Citation](#citation)
-* [License](#license)
+- [Introduction](#introduction)
+- [Release](#release)
+- [Model List](#model-list)
+  - [🎵 Moss Audio Tokenizer](#-moss-audio-tokenizer)
+  - [🎵 Audio Generation Models Based On Moss Audio Tokenizer](#-audio-generation-models-based-on-moss-audio-tokenizer)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Reconstruction](#reconstruction)
+  - [Streaming](#streaming)
+- [Quick Start](#quick-start)
+  - [Quick Test](#quick-test)
+    - [Loading Model](#loading-model)
+    - [Testing Model](#testing-model)
+- [Repository layout](#repository-layout)
+- [Evaluation Metrics](#evaluation-metrics)
+  - [LibriSpeech Speech Metrics (MOSS Audio Tokenizer vs. Open-source Tokenizers)](#librispeech-speech-metrics-moss-audio-tokenizer-vs-open-source-tokenizers)
+- [Citation](#citation)
+- [License](#license)
 
 ## Release
 <!-- TODO: replace the paper link to the arXiv link -->
-- [2026/2/10] 🎉 Released **MOSS-TTS Family**. See our [Blog](https://mosi.cn/#models) for details; models and docs are in the [MOSS-TTS repo](https://github.com/OpenMOSS/MOSS-TTS).
+- [2026/2/10] 🎉 Released **MOSS-TTS Family**. Please refer to our [blog](https://mosi.cn/#models) for details; models and docs can be found in the [MOSS-TTS GitHub repository](https://github.com/OpenMOSS/MOSS-TTS).
 - [2026/2/9] 🔥 We released code and checkpoints of Moss Audio Tokenizer. Checkout the [paper](https://github.com/OpenMOSS/MOSS-Audio-Tokenizer.git), [Hugging Face weights](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer), and [ModelScope weights](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer).
 - [ ] 🚧 Evaluation scripts
-
-## Installation
-
-```bash
-git clone https://github.com/OpenMOSS/MOSS-Audio-Tokenizer.git
-cd MOSS-Audio-Tokenizer
-pip install -r requirements.txt
-```
 
 ## Model List
 
@@ -88,6 +89,19 @@ pip install -r requirements.txt
 | **MOSS-TTS-Realtime** | [![HF](https://img.shields.io/badge/%20HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-TTS-Realtime) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-TTS-Realtime) |
 | **MOSS-VoiceGenerator** | [![HF](https://img.shields.io/badge/%20HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-VoiceGenerator) |
 | **MOSS-SoundEffect** | [![HF](https://img.shields.io/badge/%20HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-SoundEffect) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-SoundEffect) |
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/OpenMOSS/MOSS-Audio-Tokenizer.git
+cd MOSS-Audio-Tokenizer
+
+# Install dependencies
+conda create -n moss-audio-tokenizer python=3.10 -y
+conda activate moss-audio-tokenizer
+pip install -r requirements.txt
+```
 
 
 ## Usage
@@ -144,21 +158,6 @@ dec = model.decode(enc.audio_codes, return_dict=True, chunk_duration=0.08)
 
 ## Quick Start
 
-### Installation
-
-#### Conda Linux
-
-```bash
-# Clone the repository
-git clone https://github.com/OpenMOSS/MOSS-Audio-Tokenizer.git
-cd MOSS-Audio-Tokenizer
-
-# Install dependencies
-conda create -n moss-audio-tokenizer python=3.10 -y
-conda activate moss-audio-tokenizer
-pip install -r requirements.txt
-```
-
 ### Quick Test
 
 #### Loading Model
@@ -169,8 +168,8 @@ model = AutoModel.from_pretrained("OpenMOSS-Team/MOSS-Audio-Tokenizer", trust_re
 
 #### Testing Model
 ```bash
-cd MOSS-Audio-Tokenizer
 conda activate moss-audio-tokenizer
+cd MOSS-Audio-Tokenizer
 python demo/test_reconstruction.py
 ```
 
