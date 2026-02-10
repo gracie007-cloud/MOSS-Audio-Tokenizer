@@ -3,7 +3,7 @@
 <br>
 
 <p align="center" style="display:flex; justify-content:center; align-items:center; gap:24px;">
-  <img src="./images/OpenMOSS_Logo.png" height="80" style="display:block; transform: translateY(0px);" />
+  <img src="./images/OpenMOSS_logo.png" height="80" style="display:block; transform: translateY(0px);" />
   <img src="./images/mosi-logo.png" height="50" style="display:block; transform: translateY(-8px);" />
 </p>
 
