@@ -202,7 +202,15 @@ We control the bps of the same model by adjusting the number of RVQ codebooks us
 ## Citation
 If you use this code or result in your paper, please cite our work as:
 ```tex
-
+@misc{gong2026mossaudiotokenizerscalingaudiotokenizers,
+      title={MOSS-Audio-Tokenizer: Scaling Audio Tokenizers for Future Audio Foundation Models}, 
+      author={Yitian Gong and Kuangwei Chen and Zhaoye Fei and Xiaogui Yang and Ke Chen and Yang Wang and Kexin Huang and Mingshu Chen and Ruixiao Li and Qingyuan Cheng and Shimin Li and Xipeng Qiu},
+      year={2026},
+      eprint={2602.10934},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2602.10934}, 
+}
 ```
 
 
