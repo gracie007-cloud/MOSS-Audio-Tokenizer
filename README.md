@@ -51,12 +51,14 @@ This repository is the official implementation of MOSS-Audio-Tokenizer.
 - [Model List](#model-list)
   - [MOSS-Audio-Tokenizer](#moss-audio-tokenizer)
   - [MOSS-TTS Family](#moss-tts-family)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Reconstruction](#reconstruction)
-  - [Streaming](#streaming)
+- [HuggingFace (PyTorch)](#huggingface-pytorch)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [ONNX Runtime](#onnx-runtime)
+  - [Installation](#installation-1)
+  - [Usage](#usage-1)
 - [Quick Start](#quick-start)
-  - [Loading Model](#loading-model)
+  - [Loading Model (HuggingFace)](#loading-model-huggingface)
   - [Testing Model](#testing-model)
 - [Evaluation Metrics](#evaluation-metrics)
   - [LibriSpeech Speech Metrics](#librispeech-speech-metrics-moss-audio-tokenizer-vs-open-source-tokenizers)
@@ -64,6 +66,7 @@ This repository is the official implementation of MOSS-Audio-Tokenizer.
 - [License](#license)
 
 ## Release
+- [2026/3/4] 🚀 Added **ONNX Runtime** and **TensorRT** inference backends for MOSS-Audio-Tokenizer, enabling high-performance deployment without PyTorch dependency. See `onnx/` and `trt/` directories for details.
 - [2026/2/12] 🌟 We released the technical report: **MOSS-Audio-Tokenizer: Scaling Audio Tokenizers for Future Audio Foundation Models**. Read the [paper](https://arxiv.org/abs/2602.10934).
 - [2026/2/10] 🎉 Released **MOSS-TTS Family**. Please refer to our [blog](https://mosi.cn/#models) for details; models and docs can be found in the [MOSS-TTS GitHub repository](https://github.com/OpenMOSS/MOSS-TTS).
 - [2026/2/9] 🔥 We released code and checkpoints of MOSS-Audio-Tokenizer. Check out the [GitHub repository](https://github.com/OpenMOSS/MOSS-Audio-Tokenizer), [Hugging Face weights](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer), and [ModelScope weights](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer).
@@ -76,6 +79,8 @@ This repository is the official implementation of MOSS-Audio-Tokenizer.
 | Model | Hugging Face | ModelScope |
 |:-----:|:---------------:|:----------:|
 | **MOSS-Audio-Tokenizer** | [![HF](https://img.shields.io/badge/HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer) |
+| **MOSS-Audio-Tokenizer(ONNX Runtime)** | [![HF](https://img.shields.io/badge/HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-ONNX) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-Audio-Tokenizer-ONNX) |
+
 
 ### MOSS-TTS Family
 | Model | Hugging Face | ModelScope |
@@ -87,7 +92,9 @@ This repository is the official implementation of MOSS-Audio-Tokenizer.
 | **MOSS-VoiceGenerator** | [![HF](https://img.shields.io/badge/HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-VoiceGenerator) |
 | **MOSS-SoundEffect** | [![HF](https://img.shields.io/badge/HuggingFace-Model-orange?logo=huggingface)](https://huggingface.co/OpenMOSS-Team/MOSS-SoundEffect) | [![MS](https://img.shields.io/badge/ModelScope-Model-lightgrey?logo=modelscope)](https://modelscope.cn/models/openmoss/MOSS-SoundEffect) |
 
-## Installation
+## HuggingFace (PyTorch)
+
+### Installation
 
 ```bash
 # Clone the repository
@@ -100,10 +107,9 @@ conda activate moss-audio-tokenizer
 pip install -r requirements.txt
 ```
 
+### Usage
 
-## Usage
-
-### Reconstruction
+#### Reconstruction
 
 ```python
 import torch
@@ -130,10 +136,9 @@ wav_rvq8 = dec_rvq8.audio.squeeze(0)
 torchaudio.save("demo/demo_rec_rvq8.wav", wav_rvq8, sample_rate=model.sampling_rate)
 ```
 
-### Streaming
+#### Streaming
 
-`MossAudioTokenizerModel.encode` and `MossAudioTokenizerModel.decode` support simple streaming via a `chunk_duration`
-argument.
+`MossAudioTokenizerModel.encode` and `MossAudioTokenizerModel.decode` support simple streaming via a `chunk_duration` argument.
 
 - `chunk_duration` is expressed in seconds.
 - It must be <= `MossAudioTokenizerConfig.causal_transformer_context_duration`.
@@ -153,21 +158,80 @@ enc = model.encode(audio, return_dict=True, chunk_duration=0.08)
 dec = model.decode(enc.audio_codes, return_dict=True, chunk_duration=0.08)
 ```
 
+## ONNX Runtime
+
+### Installation
+
+```bash
+# From repository root
+mkdir weights
+cd weights
+git clone https://huggingface.co/OpenMOSS-Team/MOSS-Audio-Tokenizer-ONNX
+cd -
+
+# CPU version
+pip install onnxruntime librosa soundfile
+
+# GPU version (CUDA/TensorRT)
+pip install onnxruntime-gpu librosa soundfile
+```
+
+### Usage
+
+```python
+import sys
+sys.path.append(".")
+from pathlib import Path
+
+import librosa
+import soundfile as sf
+from onnx.inference import OnnxAudioTokenizer
+
+model = OnnxAudioTokenizer(
+    encoder_path=Path("weights/MOSS-Audio-Tokenizer-ONNX/encoder.onnx"),
+    decoder_path=Path("weights/MOSS-Audio-Tokenizer-ONNX/decoder.onnx"),
+    n_quantizers=32,
+    use_gpu=True,
+)
+
+wav, sr = sf.read("demo/demo_gt.wav")
+if sr != model.sample_rate:
+    wav = librosa.resample(wav, orig_sr=sr, target_sr=model.sample_rate)
+if wav.ndim > 1:
+    wav = wav.mean(axis=1)
+
+# Encode: audio -> discrete codes
+audio_codes = model.encode(wav, n_quantizers=32)
+print(f"audio_codes.shape: {audio_codes.shape}")  # (T', 32)
+
+# Decode: full 32 RVQ layers
+reconstructed = model.decode(audio_codes, n_quantizers=32)
+sf.write("demo/demo_rec_onnx.wav", reconstructed, model.sample_rate)
+
+# Decode: only first 8 RVQ layers (lower bitrate)
+reconstructed_rvq8 = model.decode(audio_codes, n_quantizers=8)
+sf.write("demo/demo_rec_onnx_rvq8.wav", reconstructed_rvq8, model.sample_rate)
+```
+
 ## Quick Start
 
-### Loading Model
+### Loading Model (HuggingFace)
 ```python
 from transformers import AutoModel
 model = AutoModel.from_pretrained("OpenMOSS-Team/MOSS-Audio-Tokenizer", trust_remote_code=True).eval()
 ```
 
 ### Testing Model
+
+#### HuggingFace
 ```bash
 conda activate moss-audio-tokenizer
 cd MOSS-Audio-Tokenizer
 python demo/test_reconstruction.py
 ```
 
+#### ONNX Runtime
+Run the ONNX code in the section above (ONNX Runtime -> Usage).
 
 ## Evaluation Metrics
 
@@ -217,3 +281,6 @@ If you use this code or result in your paper, please cite our work as:
 ## License
 <!-- TODO: check and add license -->
 MOSS-Audio-Tokenizer is released under the Apache 2.0 license.
+
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=OpenMOSS/MOSS-Audio-Tokenizer&type=date&legend=top-left)](https://www.star-history.com/#OpenMOSS/MOSS-Audio-Tokenizer&type=date&legend=top-left)
